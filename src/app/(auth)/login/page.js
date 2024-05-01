@@ -175,7 +175,7 @@ const Page = () => {
                   message: "Please Enter your username!",
                 },
               ]}
-            >
+            ><label className="text-[1rem] text-gray-500 font-semibold">Email Address</label>
               <Input
                 placeholder="Email"
                 onChange={handleEmailChange}
@@ -190,7 +190,7 @@ const Page = () => {
                   message: "Please Enter your Password!",
                 },
               ]}
-            >
+            ><label className="text-[1rem] text-gray-500 font-semibold">Password</label>
               <Input.Password
                 type="password"
                 onChange={handlePasswordChange}
