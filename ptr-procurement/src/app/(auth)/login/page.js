@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
 import Link from "next/link";
+import Logo from "../../../../public/asset/PTRlogo.png";
 
 import Image from "next/image";
 // import LoginImage from "../../../public/assets/login/login2.svg";
@@ -137,21 +138,12 @@ const Page = () => {
       {loading && <Loading />}
 
       <div className="flex flex-col justify-center items-center relative h-screen w-[100%] ">
-        <div className="w-[70vw] h-[115vh]  rounded-[50%] bg-[#E6f7ff] z-0  flex justify-center items-center absolute overflow-hidden">
-          {/* <Image
-            src={LoginImage}
-            className="bg-[#E6F7FF] w-[50%] h-[80%] scale-150"
-            alt="login image"
-          /> */}
+        <div className="w-[70vw] h-[115vh]  rounded-[50%] bg-[#e6f7ff6c] z-0  flex justify-center items-center absolute overflow-hidden">
+          <div className="w-[60vw] h-[105vh]  rounded-[50%] bg-[#e6f7ffb7] z-0  flex justify-center items-center absolute overflow-hidden"></div>
         </div>
-        <div className="md:w-[40%] bg-white z-10 flex flex-col items-center">
+        <div className="md:w-[40%] mt-4 bg-white z-10 flex flex-col items-center">
           <div className="ml-5 mb-14">
-            {/* <Image
-              src={synectiksImage}
-              className="w-[100px]"
-              alt="company logo"
-            /> */}
-            <p className="font-semibold text-2xl">PTR Procurement</p>
+            <Image src={Logo} className="w-[150px]" alt="company logo" />
           </div>
           <div>
             <div className="flex flex-col  items-center">
@@ -169,7 +161,7 @@ const Page = () => {
 
           <Form
             name="normal_login"
-            className="login-form w-[50%] ml-5"
+            className="login-form w-[80%] ml-5"
             initialValues={{
               remember: true,
             }}
@@ -206,23 +198,12 @@ const Page = () => {
                 size="large"
               />
             </Form.Item>
-            <p
-              style={{ fontSize: "11px" }}
-              className="text-gray-400 -mt-5 mb-3"
-            >
-              Password 8 characters long and include alphanumeric and special
-              characters.
-            </p>
             <Form.Item>
               <div className="flex flex-col gap-1">
-                <div className="flex justify-between">
-                  <Form.Item name="remember" valuePropName="checked" noStyle>
-                    <Checkbox disabled>Remember me</Checkbox>
-                  </Form.Item>
-
+                <div className="flex flex-row-reverse text-violet-700">
                   <Link
-                    href="/login/forgot"
-                    className="login-form-forgot text-blue-500"
+                    href="/password/reset"
+                    className="login-form-forgot text-violet-700"
                   >
                     Forgot password
                   </Link>
@@ -246,20 +227,24 @@ const Page = () => {
               >
                 Log in
               </Button> */}
-                <Button className="login-form-button bg-blue-500 w-[100%]">
+                <Button className="login-form-button bg-violet-700 text-white w-[80%] mx-7">
                   Log in
                 </Button>
               </Link>
             </Form.Item>
-            
           </Form>
         </div>
-        <div className="z-10"><p>
-              Dont have any account{" "}
-              <Link href="/signup" className="text-blue-500 cursor-pointer">
-                ?sign up
-              </Link>
-            </p></div>
+        <div className="z-10 h-20 flex flex-col items-center justify-between">
+          <p className="text-gray-400 ">
+            Dont have any account{" "}
+            <Link href="/signup" className="text-violet-700 cursor-pointer">
+              ?sign up
+            </Link>
+          </p>
+          <p className="text-gray-400">
+            2025 @-Procurement-PTRtechnologies.com
+          </p>
+        </div>
       </div>
     </>
   );
