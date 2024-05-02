@@ -12,6 +12,7 @@ import {
   RightOutlined,
   LeftOutlined,
   AppstoreFilled,
+  CalendarFilled
 } from "@ant-design/icons";
 import NavLogo from "../../../public/asset/NavLogo.png";
 import { useRouter } from "next/navigation";
@@ -21,6 +22,7 @@ import NavLink from "../nav-link";
 import Image from "next/image";
 
 const { Sider, Content } = Layout;
+
 
 const MainLayout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -45,8 +47,7 @@ const MainLayout = ({ children }) => {
           </div>
 
           {/* ... your existing Sider content */}
-          <p className="ml-2  text-sm text-gray-600">Menu</p>
-          <Menu
+          {/* <Menu
             className={`${roboto.className} relative`}
             theme="light"
             mode="inline"
@@ -60,6 +61,55 @@ const MainLayout = ({ children }) => {
               },
             ]
         }
+          /> */}
+          <Menu
+            className={`${roboto.className} relative`}
+            theme="light"
+            defaultSelectedKeys={["1"]}
+            mode="inline"
+            items={[
+              {
+                key: "g1",
+                label: "Menu",
+                type: "group",
+                children: [
+                  {
+                    key: "1",
+                    icon: <AppstoreFilled />,
+                    label: <NavLink href="/dashboard">Dashboard</NavLink>,
+                  },
+                ],
+              },
+              {
+                key: "g2",
+                label: "Approval centre",
+                type: "group",
+                children: [
+                  {
+                    key: "2",
+                    icon:<CalendarFilled />,
+                    label: "My Requests",
+                  },
+                ],
+              },
+              {
+                key: "g3",
+                label: "Support",
+                type: "group",
+                children: [
+                  {
+                    key: "3",
+                    icon:<CalendarFilled />,
+                    label: "Settings",
+                  },
+                  {
+                    key: "4",
+                    icon:<CalendarFilled />,
+                    label: "Help",
+                  },
+                ],
+              },
+            ]}
           />
           <Button
             theme="dark"
