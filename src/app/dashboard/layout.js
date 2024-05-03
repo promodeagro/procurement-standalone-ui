@@ -14,6 +14,7 @@ import {
   AppstoreFilled,
   CalendarFilled
 } from "@ant-design/icons";
+import navWatermark from "../../../public/asset/sideBar.png"
 import NavLogo from "../../../public/asset/NavLogo.png";
 import { useRouter } from "next/navigation";
 import { Layout, Menu, Button } from "antd";
@@ -40,7 +41,7 @@ const MainLayout = ({ children }) => {
           collapsed={collapsed}
           theme="light"
           className="fixed "
-          style={{ position: "fixed", height: "100vh" }}
+          style={{ position: "fixed", height: "100vh" , width:"9rem" }}
         >
           <div className=" h-[4.1rem] flex items-center justify-center  border-b">
             <Image className="" src={NavLogo} />
@@ -111,7 +112,8 @@ const MainLayout = ({ children }) => {
               },
             ]}
           />
-          <Button
+          <Image src={navWatermark} className="opacity-10"></Image>
+          {/* <Button
             theme="dark"
             className="bg-white absolute top-2/4 -right-3"
             type="text"
@@ -123,7 +125,7 @@ const MainLayout = ({ children }) => {
               height: 64,
               clipPath: `polygon(0 0, 100% 21%, 99% 80%, 0% 100%)`,
             }}
-          />
+          /> */}
         </Sider>
         <Layout
           className="site-layout"

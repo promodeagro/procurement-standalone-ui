@@ -33,7 +33,7 @@ const DashCards = () => {
   return (
     <>
     <div className=" mt-4 w-[90vw]">
-    <Row  gutter={[34, 34]} style={{ width: "100%",  }} >
+    <Row  gutter={[34, 34]} style={{ width: "100%",  }}  >
       <Col xs={24} sm={12} md={12} lg={6} xl={5}>
         <Card
           className="h-[10rem]"
@@ -41,7 +41,7 @@ const DashCards = () => {
           style={{
             boxShadow: "0px 0px 5px 1px rgba(0 , 0, 0, 0.2)",
             width: "100%",
-            padding: "4px",
+            padding: "2px",
           }}
         >
           <div className="flex items-center justify-between">
@@ -63,12 +63,12 @@ const DashCards = () => {
           style={{
             boxShadow: "0px 0px 5px 1px rgba(0 , 0, 0, 0.2)",
             width: "100%",
-            padding: "4px",
+            padding: "2px",
           }}
           bordered={false}
         >
-          <div className="flex items-center justify-between">
-            <span className="text-lg leading-snug text-left text-black font-semibold">
+          <div className="flex items-center justify-between w-[100%]  ">
+            <span className="text-[1rem] leading-snug text-left text-black font-semibold">
             Approve Request{" "}
             </span>{" "}
   
@@ -91,7 +91,7 @@ const DashCards = () => {
           bordered={false}
         >
           <div className="flex items-center justify-between">
-            <span className="text-lg leading-snug text-left text-black font-semibold">
+            <span className="text-[1rem] leading-snug text-left text-black font-semibold">
             Approve Request{" "}
             </span>{" "}
   
@@ -114,7 +114,7 @@ const DashCards = () => {
           bordered={false}
         >
           <div className="flex items-center justify-between">
-            <span className="text-lg leading-snug text-left text-black font-semibold">
+            <span className="text-[1rem] leading-snug text-left text-black font-semibold">
             Reject Request{" "}
             </span>{" "}
           </div>
@@ -137,7 +137,7 @@ const DashCards = () => {
           bordered={false}
         >
           <div className="flex items-center justify-between">
-            <span className="text-lg leading-snug text-left text-black font-semibold">
+            <span className="text-[1rem] leading-snug text-left text-black font-semibold">
             Track Request{" "}
             </span>{" "}
            
