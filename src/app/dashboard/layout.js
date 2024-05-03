@@ -58,7 +58,7 @@ const MainLayout = ({ children }) => {
               {
                 key: "1",
                 icon: <AppstoreFilled />,
-                label: <NavLink href="/main">Dashboard</NavLink>,
+                label: <NavLink href="/requester">Dashboard</NavLink>,
               },
             ]
         }
@@ -89,7 +89,7 @@ const MainLayout = ({ children }) => {
                   {
                     key: "2",
                     icon:<CalendarFilled />,
-                    label: "My Requests",
+                    label:  <NavLink href="/dashboard/requester">my request</NavLink>,
                   },
                 ],
               },
