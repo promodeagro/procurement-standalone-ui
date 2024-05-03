@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { notosans } from "@/font/font";
 // importing ant d components
-import {CalendarFilled} from "@ant-design/icons" 
+import { CalendarFilled } from "@ant-design/icons";
 import DashCards from "@/components/Cards/Cards";
 import PieCharts from "@/components/Charts/PieChart";
 import { Divider } from "antd";
@@ -15,16 +15,26 @@ const Dashboard = () => {
         <DashCards />
       </div>
       <div className="flex w-[100%]">
-        <div className="bg-white w-[50%] mt-3 ml-3 ">
-          <div className="flex items-center justify-between"><p className="text-[1rem] p-2 text-gray-500">Requisition Stats</p>
-          <span><p className="text-[1rem] font-semibold bg-white hover:bg-gray-300 p-1 rounded-lg cursor-pointer">Calender <CalendarFilled />
-          </p></span>
+        <div className="bg-white w-[50%] mt-3 ml-3 rounded-xl" style={{boxShadow: "0px 0px 5px 1px rgba(0 , 0, 0, 0.2)"}}>
+          <div className="flex items-center justify-between p-4 ">
+            <p className="text-[1rem] font-semibold">Requisition Stats</p>
+            <span>
+              <p className="text-[1rem] font-semibold bg-white hover:bg-gray-100 p-1 rounded-lg cursor-pointer">
+                Calender <CalendarFilled />
+              </p>
+            </span>
           </div>
           <PieCharts />
+          <div className="flex w-[100%] mb-4 items-center justify-center gap-3">
+            <span className="bg-[#00C49F] h-3 w-3 rounded-lg"></span>
+            <p>Apptoved</p>
+            <span className="bg-[#FFBB28] h-3 w-3 rounded-lg"></span>
+            <p>Pending</p>
+            <span className="bg-[#FF8042] h-3 w-3 rounded-lg"></span>
+            <p>Reject</p>
+          </div>
         </div>
-        <div className="h-[10rem]">
-
-        </div>
+        <div className="h-[10rem]"></div>
       </div>
     </>
   );
