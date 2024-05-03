@@ -218,7 +218,7 @@ const Page = () => {
             </Form.Item>
 
             <Form.Item>
-              <Link href="/main">
+              <Link href="/dashboard">
                 {/* <Button
                 type="primary"
                 htmlType="submit"
