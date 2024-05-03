@@ -12,7 +12,9 @@ import {
   RightOutlined,
   LeftOutlined,
   AppstoreFilled,
+  CalendarFilled
 } from "@ant-design/icons";
+import navWatermark from "../../../public/asset/sideBar.png"
 import NavLogo from "../../../public/asset/NavLogo.png";
 import { useRouter } from "next/navigation";
 import { Layout, Menu, Button } from "antd";
@@ -21,6 +23,7 @@ import NavLink from "../nav-link";
 import Image from "next/image";
 
 const { Sider, Content } = Layout;
+
 
 const MainLayout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -38,15 +41,14 @@ const MainLayout = ({ children }) => {
           collapsed={collapsed}
           theme="light"
           className="fixed "
-          style={{ position: "fixed", height: "100vh" }}
+          style={{ position: "fixed", height: "100vh" , width:"9rem" }}
         >
           <div className=" h-[4.1rem] flex items-center justify-center  border-b">
             <Image className="" src={NavLogo} />
           </div>
 
           {/* ... your existing Sider content */}
-          <p className="ml-2  text-sm text-gray-600">Menu</p>
-          <Menu
+          {/* <Menu
             className={`${roboto.className} relative`}
             theme="light"
             mode="inline"
@@ -60,8 +62,58 @@ const MainLayout = ({ children }) => {
               },
             ]
         }
+          /> */}
+          <Menu
+            className={`${roboto.className} relative`}
+            theme="light"
+            defaultSelectedKeys={["1"]}
+            mode="inline"
+            items={[
+              {
+                key: "g1",
+                label: "Menu",
+                type: "group",
+                children: [
+                  {
+                    key: "1",
+                    icon: <AppstoreFilled />,
+                    label: <NavLink href="/dashboard">Dashboard</NavLink>,
+                  },
+                ],
+              },
+              {
+                key: "g2",
+                label: "Approval centre",
+                type: "group",
+                children: [
+                  {
+                    key: "2",
+                    icon:<CalendarFilled />,
+                    label:  <NavLink href="/dashboard/requester">my request</NavLink>,
+                  },
+                ],
+              },
+              {
+                key: "g3",
+                label: "Support",
+                type: "group",
+                children: [
+                  {
+                    key: "3",
+                    icon:<CalendarFilled />,
+                    label: "Settings",
+                  },
+                  {
+                    key: "4",
+                    icon:<CalendarFilled />,
+                    label: "Help",
+                  },
+                ],
+              },
+            ]}
           />
-          <Button
+          <Image src={navWatermark} className="opacity-10"></Image>
+          {/* <Button
             theme="dark"
             className="bg-white absolute top-2/4 -right-3"
             type="text"
@@ -73,7 +125,7 @@ const MainLayout = ({ children }) => {
               height: 64,
               clipPath: `polygon(0 0, 100% 21%, 99% 80%, 0% 100%)`,
             }}
-          />
+          /> */}
         </Sider>
         <Layout
           className="site-layout"

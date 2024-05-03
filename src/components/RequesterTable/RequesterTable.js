@@ -3,6 +3,7 @@ import Image from "next/image";
 import filtericon from '../../../public/asset/filtericon.png'
 import searchicon from '../../../public/asset/searchbar.png'
 import { Divider, Table } from 'antd';
+import { Approved, Pending, Reject } from '../Badges';
 
 const columns = [
     {
@@ -43,37 +44,36 @@ const data = [
     {
         key: '1',
         id: '#1243',
-        status: 'pending',
-        Location:'Voligonda Farm',
+        status: <Reject/>,
+        Location: 'Voligonda Farm',
         date: '06/07/2023',
-        deliveryDate:'06/07/2023',
-        totalConst:'Rs.27000',
-        priority:'Medium',
-        requestedBy:'you'
+        deliveryDate: '06/07/2023',
+        totalConst: 'Rs.27000',
+        priority: 'Medium',
+        requestedBy: 'you'
     },
     {
         key: '2',
         id: '#1243',
-        status: 'pending',
-        Location:'Voligonda Farm',
+        status: <Approved/>,
+        Location: 'Voligonda Farm',
         date: '06/07/2023',
-        deliveryDate:'06/07/2023',
-        totalConst:'Rs.27000',
-        priority:'Medium',
-        requestedBy:'you'
+        deliveryDate: '06/07/2023',
+        totalConst: 'Rs.27000',
+        priority: 'Medium',
+        requestedBy: 'you'
     },
     {
         key: '3',
         id: '#1243',
-        status: 'pending',
-        Location:'Voligonda Farm',
+        status: <Pending/>,
+        Location: 'Voligonda Farm',
         date: '06/07/2023',
-        deliveryDate:'06/07/2023',
-        totalConst:'Rs.27000',
-        priority:'Medium',
-        requestedBy:'you'
+        deliveryDate: '06/07/2023',
+        totalConst: 'Rs.27000',
+        priority: 'Medium',
+        requestedBy: 'you'
     },
-  
 ];
 
 
