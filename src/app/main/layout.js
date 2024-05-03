@@ -56,7 +56,7 @@ const MainLayout = ({ children }) => {
               {
                 key: "1",
                 icon: <AppstoreFilled />,
-                label: <NavLink href="/main">Dashboard</NavLink>,
+                label: <NavLink href="/requester">Dashboard</NavLink>,
               },
             ]
         }

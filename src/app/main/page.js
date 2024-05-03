@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { notosans } from "@/font/font";
+import RequesterTable from "@/components/RequesterTable/RequesterTable";
+import RequesterCard from "@/components/RequesterCard/RequesterCard";
 // importing ant d components
 import {
     Divider,
@@ -10,7 +12,9 @@ import {
 const Dashboard = () => {
     return (
         <>
-            
+
+<RequesterCard/>
+            <RequesterTable/>
         </>
     );
 };

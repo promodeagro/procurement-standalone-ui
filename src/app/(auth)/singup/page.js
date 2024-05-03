@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import signup from '../../../../assets/singup.png'
+import signup from '../../../../public/asset/singup.png'
 import { Button, Checkbox, Form, Input, InputNumber } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import Image from 'next/image';

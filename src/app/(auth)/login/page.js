@@ -237,7 +237,7 @@ const Page = () => {
         <div className="z-10 h-20 flex flex-col items-center justify-between">
           <p className="text-gray-400 ">
             Dont have any account{" "}
-            <Link href="/signup" className="text-violet-700 cursor-pointer">
+            <Link href="/singup" className="text-violet-700 cursor-pointer">
               ?sign up
             </Link>
           </p>
