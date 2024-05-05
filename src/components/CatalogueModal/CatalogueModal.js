@@ -44,7 +44,7 @@ const CatalogueModal = (props) => {
       Items: `Edward King ${i}`,
       Units: "Each",
       category: `Tech ${i}`,
-      Quantity: `London, Park Lane no. ${i}`,
+      Quantity: `${i}`,
       Cost: `${i}`,
       StockAvailability: `1${i}`,
     });

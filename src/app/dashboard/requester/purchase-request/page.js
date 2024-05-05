@@ -286,7 +286,7 @@ const page = () => {
         <Card className="mt-4">
           <div className="flex justify-between">
             <p className="font-semibold">Line</p>
-            <p className="font-semibold">Item Name</p>
+            <p className="font-semibold border w-36">Item Name</p>
             <p className="font-semibold">Category</p>
             <p className="font-semibold">Units</p>
             <p className="font-semibold">Quantity</p>
