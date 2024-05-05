@@ -13,13 +13,17 @@ import {
   Space,
   Table,
 } from "antd";
+import { useSelector } from "react-redux";
 const PurchaseRequestItemsList = ({ editModeData, handleEdit }) => {
+  const selectedData = useSelector((state) => state.catalog.selectedData);
+  console.log(selectedData , " ReduxData")
   const [editMode, seteditMode] = useState(false);
   useEffect(() => {
     seteditMode(editModeData);
-  }, [editModeData]);
- console.log(editModeData)
-  console.log(editMode);
+  }, [editModeData ]);
+  useEffect(() => {
+    setData(selectedData.map((item, index) => ({ ...item, key: index })));
+  }, [selectedData]);
   const columns = [
     {
       dataIndex: "Line",
@@ -109,7 +113,7 @@ const PurchaseRequestItemsList = ({ editModeData, handleEdit }) => {
     },
   ];
   const [data, setData] = useState([{}]);
-
+console.log(data ,"updataedData")
   //   const [editMode, setEditMode] = useState(false);
 
   //   const handleEdit = () => {

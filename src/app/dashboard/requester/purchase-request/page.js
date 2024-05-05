@@ -22,9 +22,12 @@ import TextArea from "antd/es/input/TextArea";
 import PurchaseRequestItemsList from "@/components/PurchaseRequestItemsList/PurchaseRequestItemsList";
 import CatalogueModal from "@/components/CatalogueModal/CatalogueModal";
 import { space } from "postcss/lib/list";
+import { useDispatch } from "react-redux";
+import { setSelectedData } from "@/context/AddItemsSlice/addItemsSlice";
 
 const page = () => {
   //Catalog Modal--
+  const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -35,6 +38,11 @@ const page = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
+  const propsHandleClick =(data , selectedData)=>{
+    setIsModalOpen(data);
+    dispatch(setSelectedData(selectedData));
+  }
   //End Catalog Modal
 
   const [editMode, setEditMode] = useState(false);
@@ -266,12 +274,13 @@ const page = () => {
             </a>
           </Dropdown>
           <Modal
-            title="Basic Modal"
+          width={900}
             open={isModalOpen}
-            onOk={handleOk}
             onCancel={handleCancel}
+            footer={false}
           >
-            <CatalogueModal/>
+    
+            <CatalogueModal onClick={propsHandleClick}/>
           </Modal>
         </span>
         <Card className="mt-4">
