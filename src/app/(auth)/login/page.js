@@ -140,7 +140,7 @@ const Page = () => {
         <div className="w-[70vw] h-[115vh]  rounded-[50%] bg-[#e6f7ff6c] z-0  flex justify-center items-center absolute overflow-hidden">
           <div className="w-[60vw] h-[105vh]  rounded-[50%] bg-[#e6f7ffb7] z-0  flex justify-center items-center absolute overflow-hidden"></div>
         </div>
-        <div className="md:w-[40%] mt-4 bg-white z-10 flex flex-col items-center">
+        <div className="md:w-[40%] mt-4 bg-white z-10 flex flex-col items-center rounded-lg">
           <div className="ml-5 mb-14">
             <Image src={Logo} className="w-[150px]" alt="company logo" />
           </div>

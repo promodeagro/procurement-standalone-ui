@@ -89,7 +89,7 @@ const MainLayout = ({ children }) => {
                   {
                     key: "2",
                     icon:<CalendarFilled />,
-                    label:  <NavLink href="/dashboard/requester">my request</NavLink>,
+                    label: <NavLink href="/dashboard/requester">My Requests</NavLink>,
                   },
                 ],
               },
@@ -133,7 +133,7 @@ const MainLayout = ({ children }) => {
         >
           <Navbar />
           <Content
-            style={{ margin: "0px 0px", padding: "0px 4px", minHeight: 280 }}
+            style={{ margin: "0px 0px", padding: "0px 4px", minHeight: 280,}}
           >
             {children}
           </Content>

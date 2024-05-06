@@ -49,7 +49,7 @@ const DashCards = () => {
             All Requisitions{" "}
             </span>
           </div>
-          <Title level={2}>20000</Title>
+          <Title level={2}style={{color:"#a04de3"}}>20000</Title>
           
           <Paragraph className="text-sm font-normal leading-snug text-left text-black">
           current Month
@@ -73,7 +73,7 @@ const DashCards = () => {
             </span>{" "}
   
           </div>
-          <Title level={2}>2155</Title>
+          <Title level={2} style={{color:"#a04de3"}}>2155</Title>
           
           <Paragraph className="pt-4 text-sm font-normal leading-snug text-left text-black">
           current Month
@@ -96,7 +96,7 @@ const DashCards = () => {
             </span>{" "}
   
           </div>
-          <Title level={2}>2155</Title>
+          <Title level={2}style={{color:"#a04de3"}}>2155</Title>
           
           <Paragraph className="pt-4 text-sm font-normal leading-snug text-left text-black">
           current Month
@@ -118,7 +118,7 @@ const DashCards = () => {
             Reject Request{" "}
             </span>{" "}
           </div>
-          <Title level={2}>4545</Title>
+          <Title level={2}style={{color:"#a04de3"}}>4545</Title>
           
           <Paragraph className="pt-4 text-sm font-normal leading-snug text-left text-black">
           current Month
@@ -142,7 +142,7 @@ const DashCards = () => {
             </span>{" "}
            
           </div>
-          <Title level={2}>56555</Title>
+          <Title level={2} style={{color:"#a04de3"}}>56555</Title>
           {/* <Progress type="line" percent={30} strokeWidth={16} strokeLinecap='square' strokeColor="#FF4D4F" trailColor='#F6EEFF' /> */}
           <Paragraph className="pt-4 text-sm font-normal leading-snug text-left text-black">
           current Month

@@ -21,11 +21,10 @@ const RequesterCard = () => {
         <>
             <div className="flex items-center justify-between pt-8 pb-8">
                 <h1 className="font-bold pl-4">Purchase Requisitions</h1>
-                <Link href={'/dashboard/requester/purchaseRequest'}>
-                    <Button type="primary" size={size} className="mr-4">
-                        + Create Request
-                    </Button>
+                <Button type="primary" size={size} className="mr-4"><Link href={"/dashboard/requester/purchase-request"}>
+                    + Create Request
                 </Link>
+                </Button>
             </div>
             <Row gutter={16} className=" gap-y-2 overflow-x-hidden " style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
                 <Col span={4} className="w-auto">
