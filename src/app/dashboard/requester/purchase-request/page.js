@@ -24,26 +24,51 @@ import CatalogueModal from "@/components/CatalogueModal/CatalogueModal";
 import { space } from "postcss/lib/list";
 import { useDispatch } from "react-redux";
 import { setSelectedData } from "@/context/AddItemsSlice/addItemsSlice";
+import SubmitIcon from "../../../../../public/asset/SubmitIcon.png";
+import BulkUpload from "@/components/BulkUpload/BulkUpload";
+import DeleteModalIcon from "../../../../../public/asset/DeleteModalIcon.png"
 
 const page = () => {
   //Catalog Modal--
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [SubmitModalOpen, setSubmitModalOpen] = useState(false);
+  const [importtModalOpen, setImportModalOpen] = useState(false);
+  const [DeleteModalOpen, setDeleteModalOpen] = useState(false);
+
   const showModal = () => {
     setIsModalOpen(true);
+  };
+  const showSubmitModal = () => {
+    setSubmitModalOpen(true);
+  };
+  const showImportModal = () => {
+    setImportModalOpen(true);
+  };
+  const showDeleteModal = () => {
+    setDeleteModalOpen(true);
   };
   const handleOk = () => {
     setIsModalOpen(false);
   };
   const handleCancel = () => {
     setIsModalOpen(false);
+    setSubmitModalOpen(false);
+    setImportModalOpen(false)
+    setDeleteModalOpen(false)
   };
 
-  const propsHandleClick =(data , selectedData)=>{
+  const propsHandleClick = (data, selectedData) => {
     setIsModalOpen(data);
     dispatch(setSelectedData(selectedData));
-  }
+  };
   //End Catalog Modal
+  const [totalCost, setTotalCost] = useState(0);
+  const handleTotalCost = (cost) => {
+    setTotalCost(cost);
+  };
+
+  console.log(totalCost, "total cost");
 
   const [editMode, setEditMode] = useState(false);
   const onChange = (date, dateString) => {
@@ -63,8 +88,8 @@ const page = () => {
       key: "1",
     },
     {
-      label: "3rd menu item",
-      key: "3",
+      label: <span onClick={showImportModal}>Import</span>,
+      key: "2",
     },
   ];
   return (
@@ -79,11 +104,45 @@ const page = () => {
             <div className="flex items-center gap-6">
               <span className="flex items-center gap-2">
                 <p>Include Taxes</p>
-                <h1 className="text-3xl font-semibold">Rs. 700</h1>
+                <h1 className="text-3xl font-semibold">Rs.{totalCost || 0}</h1>
               </span>
-              <span>
-                <Button>Submit</Button>
-                <Button>Delete</Button>
+              <span className="flex gap-2">
+                <Button type="primary" onClick={showSubmitModal}>
+                  Submit
+                </Button>
+                <Button danger onClick={showDeleteModal}>Delete</Button>
+                <Modal
+                  width={500}
+                  open={SubmitModalOpen}
+                  onCancel={handleCancel}
+                  footer={false}
+                >
+                  <div className="flex flex-col items-center gap-4">
+                    <Image src={SubmitIcon} />
+                    <h2>Confirm your decision to submit this request</h2>
+                    <p>This action can’t be undone</p>
+                    <div className="flex gap-2">
+                      <Button type="primary">Submit</Button>
+                      <Button>Cancel</Button>
+                    </div>
+                  </div>
+                </Modal>
+                <Modal
+                  width={500}
+                  open={DeleteModalOpen}
+                  onCancel={handleCancel}
+                  footer={false}
+                >
+                  <div className="flex flex-col items-center gap-4">
+                    <Image src={DeleteModalIcon} />
+                    <h2>Do you want to Delete this Request?</h2>
+                    <p>This action can’t be undone</p>
+                    <div className="flex gap-2">
+                      <Button type="primary" danger>Delete</Button>
+                      <Button onClick={handleCancel}>Go Back</Button>
+                    </div>
+                  </div>
+                </Modal>
               </span>
             </div>
           </div>
@@ -255,7 +314,12 @@ const page = () => {
             overlay={
               <Menu>
                 {items.map((item) => (
-                  <Menu.Item key={item.key} onClick={()=>{item.key === "0" ? showModal : item.onClick}}>
+                  <Menu.Item
+                    key={item.key}
+                    onClick={() => {
+                      item.key === "0" ? showModal : item.onClick;
+                    }}
+                  >
                     {item.label}
                   </Menu.Item>
                 ))}
@@ -274,19 +338,27 @@ const page = () => {
             </a>
           </Dropdown>
           <Modal
-          width={900}
+            width={600}
+            
+            open={importtModalOpen}
+            onCancel={handleCancel}
+            footer={false}
+          >
+             <BulkUpload/>
+          </Modal>
+          <Modal
+            width={900}
             open={isModalOpen}
             onCancel={handleCancel}
             footer={false}
           >
-    
-            <CatalogueModal onClick={propsHandleClick}/>
+            <CatalogueModal onClick={propsHandleClick} />
           </Modal>
         </span>
         <Card className="mt-4">
           <div className="flex justify-between">
             <p className="font-semibold">Line</p>
-            <p className="font-semibold border w-36">Item Name</p>
+            <p className="font-semibold w-36">Item Name</p>
             <p className="font-semibold">Category</p>
             <p className="font-semibold">Units</p>
             <p className="font-semibold">Quantity</p>
@@ -299,6 +371,7 @@ const page = () => {
           <PurchaseRequestItemsList
             editModeData={editMode}
             handleEdit={handleEdit}
+            handleTotalCost={handleTotalCost}
           />
         </div>
       </div>

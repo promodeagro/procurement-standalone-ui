@@ -26,7 +26,7 @@ const RequesterCard = () => {
                 </Link>
                 </Button>
             </div>
-            <Row gutter={16} className=" gap-y-2 overflow-x-hidden " style={{display:'flex',alignItems:'center',justifyContent:'space-around'}}>
+            <Row gutter={16} className=" gap-y-2 overflow-x-hidden " style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
                 <Col span={4} className="w-auto">
                     <Card
                         bordered={false}

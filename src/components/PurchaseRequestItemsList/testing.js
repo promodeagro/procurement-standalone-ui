@@ -22,7 +22,7 @@ const PurchaseRequestItemsList = ({
   }, [editModeData]);
 
   useEffect(() => {
-    if (!editModeData || editModeData && selectedData.length > 0) {
+    if (selectedData.length > 0) {
       setData(
         selectedData.map((item, index) => ({
           ...item,
@@ -35,7 +35,7 @@ const PurchaseRequestItemsList = ({
         }))
       );
     }
-  }, [selectedData, editModeData]);
+  }, [selectedData]);
 
   useEffect(() => {
     // Convert Cost and Quantity to numbers before calculating total cost
@@ -51,6 +51,7 @@ const PurchaseRequestItemsList = ({
       0
     );
     setTotalCost(newTotalCost);
+
     // Pass total cost to parent component
     handleTotalCost(newTotalCost);
   }, [data]);
@@ -66,16 +67,14 @@ const PurchaseRequestItemsList = ({
   const handleEditSave = (index, field, value) => {
     if (index >= 0 && index < data.length) {
       const newDataList = [...data];
+
       newDataList[index][field] = value;
       setData(newDataList);
     }
   };
 
-  const handleDoneEdit = (totalCost) => {
+  const handleDoneEdit = () => {
     setEditingIndex(-1);
-    handleAddNewItem();
-    setEditMode(true);
-    handleTotalCost(totalCost);
   };
 
   const handleSubmit = () => {
@@ -85,25 +84,6 @@ const PurchaseRequestItemsList = ({
       handleEdit(editedItem);
     }
   };
-
-  const handleAddNewItem = () => {
-    const newItem = {
-      key: data.length,
-      Items: "",
-      category: "",
-      Units: "",
-      Quantity: "",
-      Cost: "",
-    };
-    setData([...data, newItem]);
-    setEditingIndex(data.length);
-  };
-
-  useEffect(() => {
-    if (editMode) {
-      handleAddNewItem();
-    }
-  }, [editMode]);
 
   return (
     <>
@@ -159,7 +139,7 @@ const PurchaseRequestItemsList = ({
                       handleEditSave(index, "Cost", e.target.value)
                     }
                   />
-                  <button type="delete" className=" " onClick={() => handleDoneEdit(totalCost)}>
+                  <button type="delete" className=" " onClick={handleDoneEdit}>
                     <Image className="w-[1.5rem]" width={200} src={DoneIcon} />
                   </button>
                 </>
@@ -190,6 +170,83 @@ const PurchaseRequestItemsList = ({
               )}
             </div>
           ))}
+          {editMode && (
+            <div className="flex mr-28 justify-between mb-6">
+              <p className=" font-semibold text-lg w-10">
+                {parseInt(data.length) + 1}
+              </p>
+              <div className="flex  gap-5 justify-between mb-6">
+                <div className="w-[10rem]  ml-7">
+                  <input
+                    type="text"
+                    placeholder="Enter something"
+                    className="font-semibold w-full border rounded-lg p-2 "
+                    value={data[data.length - 1]?.Items}
+                    onChange={(e) =>
+                      handleEditSave(data.length - 1, "Items", e.target.value)
+                    }
+                  />
+                </div>
+                <div className="w-[5rem] ml-9  ">
+                  <input
+                    type="text"
+                    placeholder="Enter something"
+                    className="font-semibold w-full border rounded-lg p-2"
+                    value={data[data.length - 1]?.category}
+                    onChange={(e) =>
+                      handleEditSave(
+                        data.length - 1,
+                        "category",
+                        e.target.value
+                      )
+                    }
+                  />
+                </div>
+                <div className="w-[5rem] ml-5">
+                  <input
+                    type="text"
+                    placeholder="Enter something"
+                    className="font-semibold w-full border rounded-lg p-2"
+                    value={data[data.length - 1]?.Units}
+                    onChange={(e) =>
+                      handleEditSave(data.length - 1, "Units", e.target.value)
+                    }
+                  />
+                </div>
+                <div className="w-[5rem] ml-8 ">
+                  <input
+                    type="text"
+                    placeholder="Enter something"
+                    className="font-semibold w-full border rounded-lg p-2"
+                    value={data[data.length - 1]?.Quantity}
+                    onChange={(e) =>
+                      handleEditSave(
+                        data.length - 1,
+                        "Quantity",
+                        e.target.value
+                      )
+                    }
+                  />
+                </div>
+                <div className="w-[5rem] mr-16 ml-5">
+                  <input
+                    type="text"
+                    placeholder="Enter something"
+                    className="font-semibold w-full border rounded-lg p-2"
+                    value={data[data.length - 1]?.Cost}
+                    onChange={(e) =>
+                      handleEditSave(data.length - 1, "Cost", e.target.value)
+                    }
+                  />
+                </div>
+              </div>
+              <div>
+                <Button type="primary" onClick={handleSubmit}>
+                  Submit
+                </Button>
+              </div>
+            </div>
+          )}
         </div>
       </Card>
     </>

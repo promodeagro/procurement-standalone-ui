@@ -1,9 +1,10 @@
 export const Pending = () => {
 
     return (
-        <div className="w-fit bg-yellow-100 rounded-md border text-center text-[#0c0d0e] text-xs font-normal font-['Roboto'] leading-tight px-3 py-2">
+        <div className="inline-block bg-yellow-100 rounded-full border text-center text-[#0c0d0e] text-xs font-normal font-['Roboto'] leading-tight px-2 py-1">
             Pending
         </div>
+
     )
 }
 
@@ -32,6 +33,12 @@ export const Draft = () => {
         <div className="bg-blue-100 text-xs font-normal text-[#0c0d0e] font-['Roboto'] leading-tight">
             Draft
         </div>
+    )
+}
+
+export const Status = () => {
+    return (
+        <div className="bg-yellow-300 text-yellow-500 border border-yellow-400 w-36 rounded-sm">Waiting For Approval</div>
     )
 }
 
