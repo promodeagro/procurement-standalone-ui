@@ -135,7 +135,6 @@ const Page = () => {
 
   return (
     <>
-      {loading && <Loading />}
 
       <div className="flex flex-col justify-center items-center relative h-screen w-[100%] ">
         <div className="w-[70vw] h-[115vh]  rounded-[50%] bg-[#e6f7ff6c] z-0  flex justify-center items-center absolute overflow-hidden">
@@ -218,7 +217,7 @@ const Page = () => {
             </Form.Item>
 
             <Form.Item>
-              <Link href="/main">
+              <Link href="/dashboard">
                 {/* <Button
                 type="primary"
                 htmlType="submit"
@@ -237,7 +236,7 @@ const Page = () => {
         <div className="z-10 h-20 flex flex-col items-center justify-between">
           <p className="text-gray-400 ">
             Dont have any account{" "}
-            <Link href="/signup" className="text-violet-700 cursor-pointer">
+            <Link href="/singup" className="text-violet-700 cursor-pointer">
               ?sign up
             </Link>
           </p>
