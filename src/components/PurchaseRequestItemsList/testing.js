@@ -83,8 +83,22 @@ const PurchaseRequestItemsList = ({
       // Call handleEdit function to pass the edited data
       handleEdit(editedItem);
     }
+    
+    // Add input data to the data state
+    const newItem = {
+      key: data.length,
+      Items: data[data.length - 1]?.Items || "",
+      category: data[data.length - 1]?.category || "",
+      Units: data[data.length - 1]?.Units || "",
+      Quantity: data[data.length - 1]?.Quantity || "",
+      Cost: data[data.length - 1]?.Cost || "",
+    };
+    setData([...data, newItem]);
+  
+    // Reset input fields
+    setEditingIndex(-1);
   };
-
+  
   return (
     <>
       <Card>

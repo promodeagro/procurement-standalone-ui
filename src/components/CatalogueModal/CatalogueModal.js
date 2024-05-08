@@ -1,15 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import { Button, Table } from "antd";
-import { selectSelectedData } from "@/context/AddItemsSlice/addItemsSlice";
+import { setSelectedDataReducer } from "@/context/AddItemsSlice/addItemsSlice";
 import { useDispatch, useSelector } from "react-redux";
 const CatalogueModal = (props) => {
   
-
+  const dispatch = useDispatch()
   const handleClick = () => {
     // Call the function passed from the parent and pass data back
     
-    props.onClick(false , selectedData);
+    ;
+    props.onClick(false );
   };
   const columns = [
     {
@@ -91,7 +92,7 @@ console.log(selectedData, " selected row data")
             <h2 className="text-lg font-semibold">Inventory</h2>
             {hasSelected ? `Selected ${selectedRowKeys.length} items` : "Selected 0 items"}
           </span>
-          <Button onClick={handleClick} className="mr-6">Add Items</Button>
+          <Button onClick={()=>{handleClick() , dispatch(setSelectedDataReducer(selectedData))}} className="mr-6">Add Items</Button>
         </div>
         <Table
           className="w-[80rem]"

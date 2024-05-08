@@ -59,9 +59,9 @@ const page = () => {
     setDeleteModalOpen(false)
   };
 
-  const propsHandleClick = (data, selectedData) => {
+  const propsHandleClick = (data) => {
     setIsModalOpen(data);
-    dispatch(setSelectedData(selectedData));
+    
   };
   //End Catalog Modal
   const [totalCost, setTotalCost] = useState(0);
