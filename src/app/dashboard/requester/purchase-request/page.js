@@ -27,6 +27,7 @@ import { setSelectedData } from "@/context/AddItemsSlice/addItemsSlice";
 import SubmitIcon from "../../../../../public/asset/SubmitIcon.png";
 import BulkUpload from "@/components/BulkUpload/BulkUpload";
 import DeleteModalIcon from "../../../../../public/asset/DeleteModalIcon.png"
+import Link from "next/link";
 
 const page = () => {
   //Catalog Modal--
@@ -107,9 +108,11 @@ const page = () => {
                 <h1 className="text-3xl font-semibold">Rs.{totalCost || 0}</h1>
               </span>
               <span className="flex gap-2">
-                <Button type="primary" onClick={showSubmitModal}>
+                <Link href="/dashboard/requester/purchase-request/1">
+                <Button type="primary" onClick={showSubmitModal} >
                   Submit
                 </Button>
+                </Link>
                 <Button danger onClick={showDeleteModal}>Delete</Button>
                 <Modal
                   width={500}
