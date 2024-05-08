@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Input } from "antd";
 import Image from "next/image";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Delete from "../../../public/asset/DeleteIcon.png";
 import EditIcon from "../../../public/asset/EditIcon.png";
 import DoneIcon from "../../../public/asset/DoneIcon.png";
+import { setSelectedDataReducer } from "@/context/AddItemsSlice/addItemsSlice";
 
 const PurchaseRequestItemsList = ({
   editModeData,
@@ -14,15 +15,24 @@ const PurchaseRequestItemsList = ({
   const selectedData = useSelector((state) => state.catalog.selectedData);
   const [editMode, setEditMode] = useState(false);
   const [data, setData] = useState([]);
+  const [newItem, setNewItem] = useState({
+    key: "",
+    Items: "",
+    category: "",
+    Units: "",
+    Quantity: "",
+    Cost: "",
+  });
   const [editingIndex, setEditingIndex] = useState(-1); // State to store the index of the item being edited
   const [totalCost, setTotalCost] = useState(0);
-
+  const dispatch = useDispatch();
+  
   useEffect(() => {
     setEditMode(editModeData);
   }, [editModeData]);
 
   useEffect(() => {
-    if (!editModeData || editModeData && selectedData.length > 0) {
+    if (selectedData.length > 0) {
       setData(
         selectedData.map((item, index) => ({
           ...item,
@@ -35,7 +45,7 @@ const PurchaseRequestItemsList = ({
         }))
       );
     }
-  }, [selectedData, editModeData]);
+  }, [selectedData]);
 
   useEffect(() => {
     // Convert Cost and Quantity to numbers before calculating total cost
@@ -51,12 +61,18 @@ const PurchaseRequestItemsList = ({
       0
     );
     setTotalCost(newTotalCost);
+
     // Pass total cost to parent component
     handleTotalCost(newTotalCost);
   }, [data]);
 
   const handleDelete = (key) => {
-    setData(data.filter((item) => item.key !== key));
+    setData((prevData) => {
+      const updatedData = prevData.filter((item) => item.key !== key);
+      console.log("New Data:", updatedData); // Logging the updated data after deleting
+      dispatch(setSelectedDataReducer(updatedData));
+      return updatedData;
+    });
   };
 
   const handleEditClick = (index) => {
@@ -66,45 +82,77 @@ const PurchaseRequestItemsList = ({
   const handleEditSave = (index, field, value) => {
     if (index >= 0 && index < data.length) {
       const newDataList = [...data];
+
       newDataList[index][field] = value;
       setData(newDataList);
     }
   };
 
-  const handleDoneEdit = (totalCost) => {
+  const handleDoneEdit = () => {
     setEditingIndex(-1);
-    handleAddNewItem();
-    setEditMode(true);
-    handleTotalCost(totalCost);
+    console.log(data, " changed Data");
+    dispatch(setSelectedDataReducer(data));
+    handleEdit(data);
   };
+  
+
+  const handleNewChange = (field, value) => {
+    setNewItem((prevState) => ({
+      ...prevState,
+      [field]: value,
+    }));
+  };
+
+  const handleAddNewItem = () => {
+    // Check if the new item fields are empty
+    if (
+      !newItem.Items ||
+      !newItem.category ||
+      !newItem.Units ||
+      !newItem.Quantity ||
+      !newItem.Cost
+    ) {
+      return;
+    }
+  
+    // Add new item to the data state
+    setData((prevData) => {
+      const newData = [
+        ...prevData,
+        {
+          ...newItem,
+          key: prevData.length,
+        },
+      ];
+      console.log("New Data:", newData); // Logging the new data after updating
+      dispatch(setSelectedDataReducer(newData));
+      return newData;
+    });
+  
+    // Reset new item fields
+    setNewItem({
+      key: "",
+      Items: "",
+      category: "",
+      Units: "",
+      Quantity: "",
+      Cost: "",
+    });
+  };
+  
 
   const handleSubmit = () => {
     if (editingIndex !== -1) {
       const editedItem = data[editingIndex];
       // Call handleEdit function to pass the edited data
       handleEdit(editedItem);
-    }
-  };
-
-  const handleAddNewItem = () => {
-    const newItem = {
-      key: data.length,
-      Items: "",
-      category: "",
-      Units: "",
-      Quantity: "",
-      Cost: "",
-    };
-    setData([...data, newItem]);
-    setEditingIndex(data.length);
-  };
-
-  useEffect(() => {
-    if (editMode) {
+      setEditingIndex(-1);
+    } else {
       handleAddNewItem();
+      console.log(data, " changed Data");
     }
-  }, [editMode]);
-
+  };
+  
   return (
     <>
       <Card>
@@ -159,7 +207,7 @@ const PurchaseRequestItemsList = ({
                       handleEditSave(index, "Cost", e.target.value)
                     }
                   />
-                  <button type="delete" className=" " onClick={() => handleDoneEdit(totalCost)}>
+                  <button type="delete" className=" " onClick={handleDoneEdit}>
                     <Image className="w-[1.5rem]" width={200} src={DoneIcon} />
                   </button>
                 </>
@@ -190,6 +238,69 @@ const PurchaseRequestItemsList = ({
               )}
             </div>
           ))}
+          {editMode && (
+            <div className="flex mr-28 justify-between mb-6">
+              <p className=" font-semibold text-lg w-10">
+                {parseInt(data.length) + 1}
+              </p>
+              <div className="flex  gap-5 justify-between mb-6">
+                <div className="w-[10rem]  ml-7">
+                  <input
+                    type="text"
+                    placeholder="Enter something"
+                    className="font-semibold w-full border rounded-lg p-2 "
+                    value={newItem.Items}
+                    onChange={(e) => handleNewChange("Items", e.target.value)}
+                  />
+                </div>
+                <div className="w-[5rem] ml-9  ">
+                  <input
+                    type="text"
+                    placeholder="Enter something"
+                    className="font-semibold w-full border rounded-lg p-2"
+                    value={newItem.category}
+                    onChange={(e) =>
+                      handleNewChange("category", e.target.value)
+                    }
+                  />
+                </div>
+                <div className="w-[5rem] ml-5">
+                  <input
+                    type="text"
+                    placeholder="Enter something"
+                    className="font-semibold w-full border rounded-lg p-2"
+                    value={newItem.Units}
+                    onChange={(e) => handleNewChange("Units", e.target.value)}
+                  />
+                </div>
+                <div className="w-[5rem] ml-8 ">
+                  <input
+                    type="text"
+                    placeholder="Enter something"
+                    className="font-semibold w-full border rounded-lg p-2"
+                    value={newItem.Quantity}
+                    onChange={(e) =>
+                      handleNewChange("Quantity", e.target.value)
+                    }
+                  />
+                </div>
+                <div className="w-[5rem] mr-16 ml-5">
+                  <input
+                    type="text"
+                    placeholder="Enter something"
+                    className="font-semibold w-full border rounded-lg p-2"
+                    value={newItem.Cost}
+                    onChange={(e) => handleNewChange("Cost", e.target.value)}
+                  />
+                </div>
+              </div>
+              <div>
+                <Button type="primary" onClick={handleSubmit}>
+                  Submit
+                </Button>
+              </div>
+            </div>
+          )}
         </div>
       </Card>
     </>
