@@ -29,12 +29,11 @@ import BulkUpload from "@/components/BulkUpload/BulkUpload";
 import DeleteModalIcon from "../../../../../public/asset/DeleteModalIcon.png"
 import Link from "next/link";
 
-const page = () => {
-  //Catalog Modal--
-  const dispatch = useDispatch();
+const Page = () => {
+  // Catalog Modal--
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [SubmitModalOpen, setSubmitModalOpen] = useState(false);
-  const [importtModalOpen, setImportModalOpen] = useState(false);
+  const [importModalOpen, setImportModalOpen] = useState(false);
   const [DeleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const showModal = () => {
@@ -55,15 +54,14 @@ const page = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
     setSubmitModalOpen(false);
-    setImportModalOpen(false)
-    setDeleteModalOpen(false)
+    setImportModalOpen(false);
+    setDeleteModalOpen(false);
   };
 
   const propsHandleClick = (data) => {
     setIsModalOpen(data);
-    
   };
-  //End Catalog Modal
+
   const [totalCost, setTotalCost] = useState(0);
   const handleTotalCost = (cost) => {
     setTotalCost(cost);
@@ -72,6 +70,7 @@ const page = () => {
   console.log(totalCost, "total cost");
 
   const [editMode, setEditMode] = useState(false);
+
   const onChange = (date, dateString) => {
     console.log(date, dateString);
   };
@@ -79,6 +78,40 @@ const page = () => {
     setEditMode(true);
     console.log("object");
   };
+
+  const handleSubmit = () => {
+    const requiredFields = ["department1", "department2", "priority"];
+    const emptyFields = requiredFields.filter((field) => !formValues[field]);
+
+    if (emptyFields.length > 0) {
+      Modal.error({
+        title: "Error",
+        content: `Please fill in all required fields: ${emptyFields.join(
+          ", "
+        )}`,
+      });
+    } else {
+      showSubmitModal();
+    }
+  };
+
+  const [formValues, setFormValues] = useState({
+    date: null,
+    department1: null,
+    department2: null,
+    priority: null,
+    notes: "",
+  });
+
+  const handleChange = (field, value) => {
+    setFormValues((prevValues) => ({
+      ...prevValues,
+      [field]: value,
+    }));
+  };
+
+  console.log(totalCost, "total cost");
+
   const items = [
     {
       label: <span onClick={showModal}>Catalog</span>,
@@ -93,6 +126,7 @@ const page = () => {
       key: "2",
     },
   ];
+
   return (
     <>
       <div>
@@ -105,15 +139,19 @@ const page = () => {
             <div className="flex items-center gap-6">
               <span className="flex items-center gap-2">
                 <p>Include Taxes</p>
-                <h1 className="text-3xl font-semibold">Rs.{totalCost || 0}</h1>
+                <h1 className="text-3xl font-semibold">
+                  Rs.{totalCost || 0}
+                </h1>
               </span>
               <span className="flex gap-2">
-                <Link href="/dashboard/requester/purchase-request/1">
-                <Button type="primary" onClick={showSubmitModal} >
-                  Submit
+                
+                  <Button type="primary" onClick={ handleSubmit}>
+                    Submit
+                  </Button>
+                
+                <Button danger onClick={showDeleteModal}>
+                  Delete
                 </Button>
-                </Link>
-                <Button danger onClick={showDeleteModal}>Delete</Button>
                 <Modal
                   width={500}
                   open={SubmitModalOpen}
@@ -125,8 +163,12 @@ const page = () => {
                     <h2>Confirm your decision to submit this request</h2>
                     <p>This action can’t be undone</p>
                     <div className="flex gap-2">
-                      <Button type="primary">Submit</Button>
-                      <Button>Cancel</Button>
+                    <Link href="/dashboard/requester/purchase-request/1">
+                      <Button type="primary" onClick={handleSubmit}>
+                        Submit
+                      </Button>
+                      </Link>
+                      <Button onClick={handleCancel}>Cancel</Button>
                     </div>
                   </div>
                 </Modal>
@@ -141,7 +183,9 @@ const page = () => {
                     <h2>Do you want to Delete this Request?</h2>
                     <p>This action can’t be undone</p>
                     <div className="flex gap-2">
-                      <Button type="primary" danger>Delete</Button>
+                      <Button type="primary" danger>
+                        Delete
+                      </Button>
                       <Button onClick={handleCancel}>Go Back</Button>
                     </div>
                   </div>
@@ -190,6 +234,7 @@ const page = () => {
                       .toLowerCase()
                       .localeCompare((optionB?.label ?? "").toLowerCase())
                   }
+                  onChange={(value) => handleChange("department1", value)}
                   options={[
                     {
                       value: "1",
@@ -230,6 +275,7 @@ const page = () => {
                       .toLowerCase()
                       .localeCompare((optionB?.label ?? "").toLowerCase())
                   }
+                  onChange={(value) => handleChange("department2", value)}
                   options={[
                     {
                       value: "1",
@@ -270,6 +316,7 @@ const page = () => {
                       .toLowerCase()
                       .localeCompare((optionB?.label ?? "").toLowerCase())
                   }
+                  onChange={(value) => handleChange("priority", value)}
                   options={[
                     {
                       value: "1",
@@ -299,7 +346,7 @@ const page = () => {
                 <TextArea
                   showCount
                   maxLength={100}
-                  onChange={onChange}
+                  onChange={(e) => handleChange("notes", e.target.value)}
                   placeholder="Writing anything"
                   style={{
                     height: 120,
@@ -342,12 +389,11 @@ const page = () => {
           </Dropdown>
           <Modal
             width={600}
-            
-            open={importtModalOpen}
+            open={importModalOpen}
             onCancel={handleCancel}
             footer={false}
           >
-             <BulkUpload/>
+            <BulkUpload />
           </Modal>
           <Modal
             width={900}
@@ -382,4 +428,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
