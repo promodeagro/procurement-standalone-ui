@@ -13,6 +13,7 @@ const columns = [
     {
         title: 'Request ID',
         dataIndex: 'id',
+        className:"mb-6"
     },
     {
         title: 'Status',

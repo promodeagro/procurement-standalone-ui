@@ -1,13 +1,13 @@
 "use client"
 import React, { useState } from 'react'
 import Image from "next/image";
-import rightArow from '../../../../../public/asset/rightArow.png'
-import allrequest from "../../../../../public/asset/allrequest.png";
+import rightArow from '../../../../../../public/asset/rightArow.png'
+import allrequest from "../../../../../../public/asset/allrequest.png";
 import { Pending, Status } from '@/components/Badges';
-import high from '../../../../../public/asset/BadgeRibbonHigh.png'
+import high from '../../../../../../public/asset/BadgeRibbonHigh.png'
 import { Button, Flex, Upload } from 'antd';
 import { StarOutlined, UploadOutlined } from '@ant-design/icons';
-import atachtmentIcon from '../../../../../public/asset/atachtmentIcon.png'
+import atachtmentIcon from '../../../../../../public/asset/atachtmentIcon.png'
 import { DownloadOutlined } from '@ant-design/icons';
 
 
