@@ -31,6 +31,7 @@ const props = {
 const page = () => {
 
     const [size, setSize] = useState('large'); // default is 'middle'
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (
         <>
@@ -86,6 +87,15 @@ const page = () => {
                     <p className='font-bold ml-16 pb-6'>Timeline & Actions</p>
                     <Flex gap="small" wrap className='flex flex-col w-48 ml-7 gap-4'>
                         <Button className=' -purple-600 -opacity-100 text-indigo-700 text-opacity-100'>Repeat</Button>
+                            <div className={`fixed top-0 left-0 h-full bg-gray-100 p-4 transition-transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+                            <h2 className="font-bold text-lg mb-4">Sidebar Content</h2>
+                            <ul>
+                                <li><a href="#">Link 1</a></li>
+                                <li><a href="#">Link 2</a></li>
+                                <li><a href="#">Link 3</a></li>
+                            </ul>
+                            <Button className='mt-4 bg-red-500' onClick={() => setSidebarOpen(false)}>Close Sidebar</Button>
+                        </div>
                         <Button className=' -red-600 -opacity-100 text-red-600 text-opacity-100'>Delete</Button>
                         <Button className='bg-blue-500'>Timeline</Button>
                         <Button className='bg-yellow-400'>Add comment</Button>

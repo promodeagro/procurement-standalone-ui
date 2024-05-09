@@ -37,7 +37,7 @@ const Dashboard = () => {
             <p>Reject</p>
           </div>
         </div>
-        <div className="bg-white w-[50%] mt-3 ml-3 rounded-xl" style={{boxShadow: "0px 0px 5px 1px rgba(0 , 0, 0, 0.2)"}}>
+        <div className="bg-white w-[40%] mt-3 ml-3 rounded-xl" style={{boxShadow: "0px 0px 5px 1px rgba(0 , 0, 0, 0.2)"}}>
           <div className="flex items-center justify-between p-4 ">
             <p className="text-[1rem] font-semibold">Requisition Stats</p>
             <span>
