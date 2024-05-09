@@ -6,7 +6,10 @@ import { notosans } from "@/font/font";
 import { CalendarFilled } from "@ant-design/icons";
 import DashCards from "@/components/Cards/Cards";
 import PieCharts from "@/components/Charts/PieChart";
+import SimpleBarChart from "@/components/Charts/BarChart";
 import { Divider } from "antd";
+import RequesterTable from "@/components/RequesterTable/RequesterTable";
+
 
 const Dashboard = () => {
   return (
@@ -34,8 +37,20 @@ const Dashboard = () => {
             <p>Reject</p>
           </div>
         </div>
+        <div className="bg-white w-[50%] mt-3 ml-3 rounded-xl" style={{boxShadow: "0px 0px 5px 1px rgba(0 , 0, 0, 0.2)"}}>
+          <div className="flex items-center justify-between p-4 ">
+            <p className="text-[1rem] font-semibold">Requisition Stats</p>
+            <span>
+              <p className="text-[1rem] font-semibold bg-white hover:bg-gray-100 p-1 rounded-lg cursor-pointer">
+                Calender <CalendarFilled />
+              </p>
+            </span>
+          </div> 
+          <SimpleBarChart />
+        </div>
         <div className="h-[10rem]"></div>
       </div>
+      <RequesterTable />
     </>
   );
 };
