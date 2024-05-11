@@ -1,97 +1,35 @@
-import React, { PureComponent } from 'react';
-import { BarChart, Bar,XAxis, YAxis, ResponsiveContainer } from 'recharts';
+import React from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [
-  {
-    name: 'Jan',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Feb',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Mar',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'Apr',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'May',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'Jun',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'Jul',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: 'Aug',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: 'Sep',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: 'Oct',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: 'Nov',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: 'Dec',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
+  { month: 'January', value: 400 },
+  { month: 'February', value: 300 },
+  { month: 'March', value: 500 },
+  { month: 'April', value: 200 },
+  { month: 'May', value: 700 },
+  { month: 'June', value: 600 },
+  { month: 'July', value: 300 },
+  { month: 'August', value: 500 },
+  { month: 'September', value: 400 },
+  { month: 'October', value: 600 },
+  { month: 'November', value: 300 },
+  { month: 'December', value: 500 },
 ];
 
+const SimpleBarChart = () => {
+  return (    
+    <ResponsiveContainer width="100%" height={330}>
+      <BarChart data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="month" />
+        <YAxis domain={[100, 700]} />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="value" fill="#8884d8" />
+      </BarChart>
+    </ResponsiveContainer>
+  );
+};
 
-const BarCharts = () => {
-    return (
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart width={150} height={40} data={data}>
-            <XAxis dataKey="name" tick={{ dy: 10 }} />
-            <YAxis tick={{ dx: -10 }} />
-            <Bar dataKey="uv" fill="#8884d8"  radius={[10, 10, 0, 0]} />
-          </BarChart>
-        </ResponsiveContainer>
-      );
-}
-
-export default BarCharts
-
-
+export default SimpleBarChart;
  
-
-

@@ -1,5 +1,5 @@
 "use client";
-const { configureStore } = require("@reduxjs/toolkit");
+import { configureStore } from"@reduxjs/toolkit";
 import catalogReducer from "./AddItemsSlice/addItemsSlice"
 // import addResourceReduser from "./AddresourcesSlice/addresourcesSlice";
 

@@ -31,6 +31,7 @@ const props = {
 const page = () => {
 
     const [size, setSize] = useState('large'); // default is 'middle'
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (
         <>
@@ -85,7 +86,7 @@ const page = () => {
                 <div style={{ width: '20rem' }} className=' bg-white border-none rounded-lg p-5 ml-5  '>
                     <p className='font-bold ml-16 pb-6'>Timeline & Actions</p>
                     <Flex gap="small" wrap className='flex flex-col w-48 ml-7 gap-4'>
-                        <Button className=' -purple-600 -opacity-100 text-indigo-700 text-opacity-100'>Repeat</Button>
+                        <Button className=' -purple-600 -opacity-100 text-indigo-700 text-opacity-100'>Repeat</Button>                         
                         <Button className=' -red-600 -opacity-100 text-red-600 text-opacity-100'>Delete</Button>
                         <Button className='bg-blue-500'>Timeline</Button>
                         <Button className='bg-yellow-400'>Add comment</Button>
