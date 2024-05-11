@@ -12,6 +12,7 @@ import RequesterTable from "@/components/RequesterTable/RequesterTable";
 
 
 const Dashboard = () => {
+  const childData = 'all';
   return (
     <>
       <div className="flex flex-row gap-9 w-full ml-4 ">
@@ -50,7 +51,7 @@ const Dashboard = () => {
         </div>
         <div className="h-[10rem]"></div>
       </div>
-      <RequesterTable />
+      <RequesterTable dataFromParent={childData}/>
     </>
   );
 };
