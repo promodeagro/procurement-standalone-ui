@@ -7,6 +7,8 @@ import { CalendarFilled } from "@ant-design/icons";
 import DashCards from "@/components/Cards/Cards";
 import PieCharts from "@/components/Charts/PieChart";
 import { Divider } from "antd";
+import BarCharts from "@/components/Charts/BarChart";
+
 
 const Dashboard = () => {
   return (
@@ -14,8 +16,8 @@ const Dashboard = () => {
       <div className="flex flex-row gap-9 w-full ml-4 ">
         <DashCards />
       </div>
-      <div className="flex w-[100%]">
-        <div className="bg-white w-[50%] mt-3 ml-3 rounded-xl" style={{boxShadow: "0px 0px 5px 1px rgba(0 , 0, 0, 0.2)"}}>
+      <div className="flex w-[100%] mt-8">
+        <div className="bg-white w-[40%] mt-3 ml-3 rounded-xl" style={{boxShadow: "0px 0px 5px 1px rgba(0 , 0, 0, 0.2)"}}>
           <div className="flex items-center justify-between p-4 ">
             <p className="text-[1rem] font-semibold">Requisition Stats</p>
             <span>
@@ -34,7 +36,9 @@ const Dashboard = () => {
             <p>Reject</p>
           </div>
         </div>
-        <div className="h-[10rem]"></div>
+        <div className="bg-white w-[60%] mt-3 ml-3 rounded-xl py-10" style={{boxShadow: "0px 0px 5px 1px rgba(0 , 0, 0, 0.2)"}}>
+            <BarCharts/>
+        </div>
       </div>
     </>
   );
