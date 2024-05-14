@@ -12,13 +12,14 @@ import RequesterTable from "@/components/RequesterTable/RequesterTable";
 
 
 const Dashboard = () => {
+  const childData = 'all';
   return (
     <>
       <div className="flex flex-row gap-9 w-full ml-4 ">
         <DashCards />
       </div>
-      <div className="flex w-[100%]">
-        <div className="bg-white w-[50%] mt-3 ml-3 rounded-xl" style={{boxShadow: "0px 0px 5px 1px rgba(0 , 0, 0, 0.2)"}}>
+      <div className="flex w-[100%] mt-8">
+        <div className="bg-white w-[40%] mt-3 ml-3 rounded-xl" style={{boxShadow: "0px 0px 5px 1px rgba(0 , 0, 0, 0.2)"}}>
           <div className="flex items-center justify-between p-4 ">
             <p className="text-[1rem] font-semibold">Requisition Stats</p>
             <span>
@@ -28,7 +29,7 @@ const Dashboard = () => {
             </span>
           </div>
           <PieCharts />
-          <div className="flex w-[100%] mb-4 items-center justify-center gap-3">
+          <div className="flex w-[100%] items-center justify-center gap-3 ">
             <span className="bg-[#00C49F] h-3 w-3 rounded-lg"></span>
             <p>Apptoved</p>
             <span className="bg-[#FFBB28] h-3 w-3 rounded-lg"></span>
@@ -37,7 +38,7 @@ const Dashboard = () => {
             <p>Reject</p>
           </div>
         </div>
-        <div className="bg-white w-[40%] mt-3 ml-3 rounded-xl" style={{boxShadow: "0px 0px 5px 1px rgba(0 , 0, 0, 0.2)"}}>
+        <div className="bg-white w-[60%] h-[25rem] mt-3 ml-3 rounded-xl" style={{boxShadow: "0px 0px 5px 1px rgba(0 , 0, 0, 0.2)"}}>
           <div className="flex items-center justify-between p-4 ">
             <p className="text-[1rem] font-semibold">Requisition Stats</p>
             <span>
@@ -50,7 +51,7 @@ const Dashboard = () => {
         </div>
         <div className="h-[10rem]"></div>
       </div>
-      <RequesterTable />
+      <RequesterTable dataFromParent={childData}/>
     </>
   );
 };

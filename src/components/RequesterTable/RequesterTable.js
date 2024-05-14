@@ -1,19 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import Image from "next/image";
-import filtericon from '../../../public/asset/filtericon.png'
-import searchicon from '../../../public/asset/searchbar.png'
+import filtericon from '../../../public/asset/filtericon.png';
+import searchicon from '../../../public/asset/searchbar.png';
 import { Divider, Table } from 'antd';
 import { Approved, Pending, Reject } from '../Badges';
-import medium from '../../../public/asset/medium.png'
-import high from '../../../public/asset/high.png'
-import low from '../../../public/asset/low.png'
-import requestedby from '../../../public/asset/requestedby.png'
+import medium from '../../../public/asset/medium.png';
+import high from '../../../public/asset/high.png';
+import low from '../../../public/asset/low.png';
+import requestedby from '../../../public/asset/requestedby.png';
 
 const columns = [
     {
         title: 'Request ID',
         dataIndex: 'id',
-        className:"mb-6"
+        className: "mb-6"
     },
     {
         title: 'Status',
@@ -49,7 +49,7 @@ const data = [
     {
         key: '1',
         id: '#1243',
-        status: <Reject />,
+        status: 'Reject',
         Location: 'Voligonda Farm',
         date: '06/07/2023',
         deliveryDate: '06/07/2023',
@@ -66,7 +66,7 @@ const data = [
     {
         key: '2',
         id: '#1243',
-        status: <Approved />,
+        status: 'Approved',
         Location: 'Voligonda Farm',
         date: '06/07/2023',
         deliveryDate: '06/07/2023',
@@ -83,7 +83,7 @@ const data = [
     {
         key: '3',
         id: '#1243',
-        status: <Pending />,
+        status: 'Pending',
         Location: 'Voligonda Farm',
         date: '06/07/2023',
         deliveryDate: '06/07/2023',
@@ -100,12 +100,27 @@ const data = [
 ];
 
 
-const RequesterTable = () => {
+const RequesterTable = ({ dataFromParent }) => {
+    const [statusFilter, setStatusFilter] = useState('all');
+    const [filteredData, setFilteredData] = useState([]);
+
+    useEffect(() => {
+        if (dataFromParent) {
+            setStatusFilter(dataFromParent);
+            if (dataFromParent === 'all') {
+                setFilteredData(data);
+            } else {
+                const filtered = data.filter(item => item.status.toLowerCase() === dataFromParent.toLowerCase());
+                setFilteredData(filtered);
+            }
+        }
+    }, [dataFromParent]);
+
     return (
         <>
             <div className='bg-white mt-4'>
                 <div className='flex items-center justify-start pl-8 mb-6'>
-                    <button className='flex items-center hug w-hug border-2 rounded-lg p-2 border-purple-700 text-purple-700'>
+                    <button className='flex items-center hug w-hug border-2 rounded-lg p-2 border-purple-700 text-purple-700' onClick={() => setStatusFilter('all')}>
                         <Image src={filtericon} alt='' />
                         Filter
                     </button>
@@ -119,10 +134,10 @@ const RequesterTable = () => {
                         />
                     </div>
                 </div>
-                <Table columns={columns} dataSource={data} size="small" />
+                <Table columns={columns} dataSource={filteredData} size="small" />
             </div>
         </>
     )
 }
 
-export default RequesterTable
+export default RequesterTable;
